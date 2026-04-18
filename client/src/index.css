@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tsr-primary: #2d2c2a;
+  --tsr-secondary: #605e5b;
+  --tsr-tertiary: #87763c;
+  --tsr-neutral: #faf9f6;
+
+  /* Default = LIGHT */
+  --tsr-bg: #faf9f6;
+  --tsr-surface: rgba(250, 249, 246, 0.82);
+  --tsr-border: rgba(96, 94, 91, 0.22);
+  --tsr-text: rgba(45, 44, 42, 0.92);
+  --tsr-muted: rgba(45, 44, 42, 0.62);
+  --tsr-soft: rgba(45, 44, 42, 0.06);
+  --tsr-soft-2: rgba(45, 44, 42, 0.12);
+  --tsr-accent: rgba(135, 118, 60, 0.72);
+  --tsr-accent-soft: rgba(135, 118, 60, 0.14);
+}
+
+[data-theme='dark'] {
+  --tsr-bg: #0b0b0a;
+  --tsr-surface: rgba(45, 44, 42, 0.55);
+  --tsr-border: rgba(96, 94, 91, 0.35);
+  --tsr-text: rgba(250, 249, 246, 0.92);
+  --tsr-muted: rgba(250, 249, 246, 0.62);
+  --tsr-soft: rgba(250, 249, 246, 0.06);
+  --tsr-soft-2: rgba(250, 249, 246, 0.12);
+  --tsr-accent: rgba(135, 118, 60, 0.78);
+  --tsr-accent-soft: rgba(135, 118, 60, 0.18);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--tsr-bg);
+  color: var(--tsr-text);
+}
+
+body.tsr-lock-page-scroll {
+  overflow: hidden;
+}
+
+@layer components {
+  .tsr-surface {
+    background: var(--tsr-surface);
+    border: 1px solid var(--tsr-border);
+    backdrop-filter: blur(12px);
+  }
+
+  .tsr-input {
+    @apply w-full rounded-xl px-3 py-2 outline-none;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--tsr-border);
+    color: var(--tsr-text);
+  }
+
+  .tsr-input:focus {
+    border-color: var(--tsr-accent);
+    box-shadow: 0 0 0 3px var(--tsr-accent-soft);
+  }
+
+  .tsr-btn {
+    @apply rounded-xl px-4 py-2 font-medium;
+    background: var(--tsr-soft);
+    border: 1px solid var(--tsr-border);
+    color: var(--tsr-text);
+  }
+
+  .tsr-btn:hover {
+    background: var(--tsr-soft-2);
+  }
+
+  .tsr-btn-primary {
+    @apply rounded-xl px-5 py-2 font-semibold;
+    background: rgba(135, 118, 60, 0.88);
+    border: 1px solid rgba(135, 118, 60, 0.55);
+    color: rgba(250, 249, 246, 0.98);
+  }
+
+  .tsr-btn-primary:hover {
+    background: rgba(135, 118, 60, 0.96);
+  }
+
+  .tsr-reading-zone {
+    background: transparent;
+    border: 0;
+  }
+
+  .tsr-reading-text {
+    font-family: 'Be Vietnam Pro', 'Noto Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: 1.12rem;
+    line-height: 2.05;
+    letter-spacing: 0.002em;
+    font-variant-ligatures: none;
+  }
+
+  .tsr-stable-scroll {
+    scrollbar-gutter: stable;
+  }
+}

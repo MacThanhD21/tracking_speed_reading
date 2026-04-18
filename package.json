@@ -1,0 +1,16 @@
+{
+  "name": "tracking-speed-reading",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "client:dev": "cd client && npm run dev",
+    "server:dev": "cd server && npm run dev",
+    "client:build": "cd client && npm run build",
+    "server:start": "cd server && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
