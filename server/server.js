@@ -11,9 +11,7 @@ import adminRoutes from './routes/adminRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// Load env from platform first (Render), then local file as fallback.
-dotenv.config();
-dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config({ path: path.join(__dirname, '.env'), override: true });
 
 const required = ['MONGODB_URI', 'JWT_SECRET'];
 const missing = required.filter((k) => !process.env[k]);
@@ -22,9 +20,10 @@ if (missing.length) {
   process.exit(1);
 }
 
+connectDB();
+
 const app = express();
 const PORT = process.env.PORT || 5050;
-const HOST = '0.0.0.0';
 
 const devOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:5174', 'http://127.0.0.1:5174'];
 app.use(
@@ -62,12 +61,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: err.message || 'Server error' });
 });
 
-app.listen(PORT, HOST, () => {
-  console.log(`API listening on http://${HOST}:${PORT}`);
-  // Try DB after port is bound so Render can detect open port.
-  connectDB().then((ok) => {
-    if (!ok) {
-      console.warn('MongoDB is not connected yet. The server will keep running.');
-    }
-  });
+app.listen(PORT, () => {
+  console.log(`API listening on http://localhost:${PORT}`);
 });
